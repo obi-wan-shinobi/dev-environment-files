@@ -2,11 +2,21 @@
 
 Inspired from [Josean Martinez's repository](https://github.com/josean-dev/dev-environment-files/tree/main)
 
+# Installing stow and cloning the repository
+
+Install [GNU stow](https://www.gnu.org/software/stow/) with the package manager of your choice.
+
+CLone this repository in your user home
+
+```zsh
+git clone https://github.com/obi-wan-shinobi/dev-environment-files.git ~/dev-environment-files
+```
+
 # Zsh setup
 
-Before using the [.zshrc](.zshrc) configuration, you need to make sure you have zsh and [oh-my-zsh](https://ohmyz.sh/#install) installed. 
+Before using the [.zshrc](.zshrc) configuration, you need to make sure you have zsh and [oh-my-zsh](https://ohmyz.sh/#install) installed.
 
-After installing oh-my-zsh, you might notice that the shell throws an error for a couple of plugins: `zsh-syntax-highlighting` and `zsh-autosuggestions` 
+After installing oh-my-zsh, you might notice that the shell throws an error for a couple of plugins: `zsh-syntax-highlighting` and `zsh-autosuggestions`
 
 We need to install these separately by following the process here:
 
@@ -17,9 +27,10 @@ After you're done, we need to install node version manager (nvm) and `node` beca
 
 Follow the steps here: [nvm install guide](https://github.com/nvm-sh/nvm?tab=readme-ov-file#install--update-script)
 
-After doing that, just copy the [.zshrc](.zshrc) to your `HOME` directory
+After doing that, if you only want to use the zsh config, you can go ahead and stow it from inside the folder (make sure the file doesn't already exist in `$HOME` directory)
+
 ```zsh
-cp .zshrc ~/.zshrc
+stow .
 ```
 
 # Tmux setup
@@ -34,7 +45,9 @@ Clone tpm:
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
-After installing tpm, run a tmux session, copy the contents of [tmux.conf](.config/tmux/tmux.conf) to the `~/.config/tmux/tmux.conf` and install the plugins using `<C-Space>I`
+You can run stow again to create symlinks for .config/tmux/tmux.conf to ~/.config/tmux/tmux.conf
+
+Run a tmux session and install the plugins using `<C-Space>I`
 
 # Neovim Setup
 
@@ -51,7 +64,7 @@ sudo tar -C ~/ -xzf nvim-linux64.tar.gz
 mv nvim-linux64 neovim
 ```
 
-Copy the `.config/nvim` directory from the repository to `~/.config/nvim` and run `nvim` from anywhere to install `Lazy` and other plugins. 
+Stow the `.config/nvim` to create symlinks to `~/.config/nvim` and run `nvim` from anywhere to install `Lazy` and other plugins.
 
 ### Notes
 
