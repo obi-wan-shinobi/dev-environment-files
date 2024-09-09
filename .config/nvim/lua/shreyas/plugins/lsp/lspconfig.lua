@@ -1,5 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
+  "tomtomjhj/vscoq.nvim",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
@@ -78,7 +79,7 @@ return {
     })
 
     -- configure typescript server with plugin
-    lspconfig["tsserver"].setup({
+    lspconfig["ts_ls"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })
@@ -145,5 +146,27 @@ return {
         },
       },
     })
+
+    -- -- configure vscoq server
+    -- require("vscoq").setup({
+    --   vscoq = {
+    --     proof = {
+    --       -- In manual mode, don't move the cursor when stepping forward/backward a command
+    --       cursor = { sticky = true },
+    --     },
+    --   },
+    --   lsp = {
+    --     filetypes = { "coq" },
+    --     on_attach = function(client, bufnr)
+    --       -- your mappings, etc
+    --
+    --       -- In manual mode, use ctrl-alt-{j,k,l} to step.
+    --       vim.keymap.set({ "n", "i" }, "<C-M-j>", "<Cmd>VsCoq stepForward<CR>", { buffer = bufnr })
+    --       vim.keymap.set({ "n", "i" }, "<C-M-k>", "<Cmd>VsCoq stepBackward<CR>", { buffer = bufnr })
+    --       vim.keymap.set({ "n", "i" }, "<C-M-l>", "<Cmd>VsCoq interpretToPoint<CR>", { buffer = bufnr })
+    --     end,
+    --     autostart = true, -- use this if you want to manually `:LspStart vscoqtop`.
+    --   },
+    -- })
   end,
 }
