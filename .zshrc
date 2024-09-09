@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH="$HOME/neovim/bin:/$HOME/bin:/usr/local/bin:$PATH:/usr/local/go/bin:/$HOME/go/bin/:"
+export PATH="$HOME/neovim/bin:/$HOME/bin:/usr/local/bin:/usr/local/go/bin:/$HOME/go/bin/:/Applications/Visual Studio Code.app/Contents/Resources/app/bin/:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -103,6 +103,18 @@ source $ZSH/oh-my-zsh.sh
 alias pip=pip3
 alias python=python3
 
+source $HOME/.aliases
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+# BEGIN opam configuration
+# This is useful if you're using opam as it adds:
+#   - the correct directories to the PATH
+#   - auto-completion for the opam binary
+# This section can be safely removed at any time if needed.
+[[ ! -r '/Users/shreyas/.opam/opam-init/init.zsh' ]] || source '/Users/shreyas/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+# END opam configuration
+eval "$(zoxide init zsh)"
