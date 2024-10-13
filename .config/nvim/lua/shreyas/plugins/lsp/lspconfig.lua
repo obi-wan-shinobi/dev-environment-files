@@ -1,15 +1,17 @@
 return {
   "neovim/nvim-lspconfig",
-  "tomtomjhj/vscoq.nvim",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
+    "whonore/Coqtail",
+    "tomtomjhj/coq-lsp.nvim",
     { "antosha417/nvim-lsp-file-operations", config = true },
   },
   config = function()
     -- import lspconfig plugin
     local lspconfig = require("lspconfig")
     local util = require("lspconfig/util")
+    local coq_lsp = require("coq-lsp")
 
     -- import cmp-nvim-lsp plugin
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
@@ -71,6 +73,18 @@ return {
       local hl = "DiagnosticSign" .. type
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
+
+    -- Configure Coq LSP server using the coq_lsp imported module
+    coq_lsp.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      init_options = {
+        show_notices_as_diagnostics = true,
+        loaded_coqtail = 1,
+        coqtail = 0,
+      },
+      autostart = true,
+    })
 
     -- configure html server
     lspconfig["html"].setup({
