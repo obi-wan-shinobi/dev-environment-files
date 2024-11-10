@@ -123,6 +123,24 @@ return {
       on_attach = on_attach,
     })
 
+    -- configure docker server
+    lspconfig["dockerls"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+
+    -- configure docker-compose server
+    lspconfig["docker_compose_language_service"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+
+    -- configure latex server
+    lspconfig["ltex"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+
     -- configure go server
     lspconfig["gopls"].setup({
       capabilities = capabilities,

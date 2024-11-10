@@ -21,6 +21,8 @@ return {
         lua = { "stylua" },
         python = { "isort", "black" },
         go = { "goimports-revier", "gofmt", "golines" },
+        bib = { "bibtex-tidy" },
+        tex = { "latexindent" },
       },
       format_on_save = {
         lsp_fallback = true,

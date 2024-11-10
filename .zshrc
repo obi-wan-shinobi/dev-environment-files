@@ -70,7 +70,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git python pylint pip zsh-autosuggestions zsh-syntax-highlighting timer web-search)
+plugins=(git python pylint pip zsh-autosuggestions zsh-syntax-highlighting timer web-search docker poetry)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -118,3 +118,12 @@ export NVM_DIR="$HOME/.nvm"
 [[ ! -r '/Users/shreyas/.opam/opam-init/init.zsh' ]] || source '/Users/shreyas/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
 # END opam configuration
 eval "$(zoxide init zsh)"
+
+# Created by `pipx` on 2024-10-22 10:14:41
+export PATH="$PATH:/Users/shreyas/.local/bin"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/libpq/lib/pkgconfig"
+export LIBRARY_PATH=$LIBRARY_PATH:$(brew --prefix)/lib:$(brew --prefix)/opt/libiconv/lib
