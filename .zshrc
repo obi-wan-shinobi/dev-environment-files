@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH="$HOME/neovim/bin:/$HOME/bin:/usr/local/bin:/usr/local/go/bin:/$HOME/go/bin/:/Applications/Visual Studio Code.app/Contents/Resources/app/bin/:$PATH"
+export PATH="$HOME/neovim/bin:/$HOME/bin:/usr/local/bin:/usr/local/go/bin:/$HOME/go/bin/:/usr/local/texlive/2024/bin/x86_64-linux:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -103,7 +103,7 @@ source $ZSH/oh-my-zsh.sh
 alias pip=pip3
 alias python=python3
 
-source $HOME/.aliases
+# source $HOME/.aliases
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -115,15 +115,17 @@ export NVM_DIR="$HOME/.nvm"
 #   - the correct directories to the PATH
 #   - auto-completion for the opam binary
 # This section can be safely removed at any time if needed.
-[[ ! -r '/Users/shreyas/.opam/opam-init/init.zsh' ]] || source '/Users/shreyas/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+# [[ ! -r '/Users/shreyas/.opam/opam-init/init.zsh' ]] || source '/Users/shreyas/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
 # END opam configuration
 eval "$(zoxide init zsh)"
 
 # Created by `pipx` on 2024-10-22 10:14:41
 export PATH="$PATH:/Users/shreyas/.local/bin"
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+# export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export MANPATH=/usr/local/texlive/2024/texmf-dist/doc/man:$MANPATH
+export INFOPATH=/usr/local/texlive/2024/texmf-dist/doc/info:$INFOPATH
 
-export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"
-export PKG_CONFIG_PATH="/opt/homebrew/opt/libpq/lib/pkgconfig"
-export LIBRARY_PATH=$LIBRARY_PATH:$(brew --prefix)/lib:$(brew --prefix)/opt/libiconv/lib
+# export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"
+# export PKG_CONFIG_PATH="/opt/homebrew/opt/libpq/lib/pkgconfig"
+# export LIBRARY_PATH=$LIBRARY_PATH:$(brew --prefix)/lib:$(brew --prefix)/opt/libiconv/lib
