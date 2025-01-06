@@ -12,7 +12,8 @@ return {
 
       -- Automatically install missing parsers when entering buffer
       -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-      auto_install = true,
+      -- Shreyas: Tex doesn't seem to work correctly when this is true
+      -- auto_install = true,
 
       highlight = {
         enable = true,
