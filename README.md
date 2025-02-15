@@ -36,7 +36,6 @@ stow .
 # Tmux setup
 
 After installing Zsh, we need to install the tmux binary package. Follow the [tmux install guide](https://github.com/tmux/tmux/wiki/Installing#binary-packages)
-I suggest you install the latest tmux from source tarball.
 
 Once you have installed tmux, you need to install the tmux plugin manager ([tpm](https://github.com/tmux-plugins/tpm)) by cloning the tpm repository to `~/.tmux/plugins/tpm` directory.
 
@@ -70,8 +69,3 @@ Stow the `.config/nvim` to create symlinks to `~/.config/nvim` and run `nvim` fr
 ### Notes
 
 If you are unable to load a preview using the markdown-preview plugin, refer this [thread](https://github.com/iamcco/markdown-preview.nvim/issues/148#issuecomment-1921780253)
-
-You also need to install texlive for LaTex support to work. Installation is different for Linux and Mac.
-
-Follow the [molten](https://github.com/benlubas/molten-nvim/blob/main/docs/Not-So-Quick-Start-Guide.md) guide and install Image.nvim, it is
-a bit annoying but you need to have it working.
