@@ -8,6 +8,8 @@ return {
     "saadparwaiz1/cmp_luasnip", -- for autocompletion
     "rafamadriz/friendly-snippets", -- useful snippets
     "onsails/lspkind.nvim", -- vs-code like pictograms
+    "SirVer/ultisnips", -- UltiSnips engine
+    "quangnguyen30192/cmp-nvim-ultisnips", -- UltiSnips source for nvim-cmp
   },
   config = function()
     local cmp = require("cmp")
@@ -41,6 +43,7 @@ return {
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "luasnip" }, -- snippets
+        { name = "ultisnips" }, -- UltiSnips source
         { name = "buffer" }, -- text within current buffer
         { name = "path" }, -- file system paths
       }),
@@ -52,5 +55,24 @@ return {
         }),
       },
     })
+    -- Optional: Map <Tab> and <S-Tab> for both snippet navigation and completion
+    vim.api.nvim_set_keymap(
+      "i",
+      "<Tab>",
+      [[pumvisible() ? "<C-n>" : UltiSnips#CanExpandSnippet() ? "<C-R>=UltiSnips#ExpandSnippet()<CR>" : "<Tab>"]],
+      { expr = true, noremap = true, silent = true }
+    )
+    vim.api.nvim_set_keymap(
+      "s",
+      "<Tab>",
+      [[UltiSnips#CanJumpForwards() ? "<C-R>=UltiSnips#JumpForwards()<CR>" : "<Tab>"]],
+      { expr = true, noremap = true, silent = true }
+    )
+    vim.api.nvim_set_keymap(
+      "s",
+      "<S-Tab>",
+      [[UltiSnips#CanJumpBackwards() ? "<C-R>=UltiSnips#JumpBackwards()<CR>" : "<S-Tab>"]],
+      { expr = true, noremap = true, silent = true }
+    )
   end,
 }
