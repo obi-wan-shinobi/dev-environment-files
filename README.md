@@ -69,3 +69,9 @@ Stow the `.config/nvim` to create symlinks to `~/.config/nvim` and run `nvim` fr
 ### Notes
 
 If you are unable to load a preview using the markdown-preview plugin, refer this [thread](https://github.com/iamcco/markdown-preview.nvim/issues/148#issuecomment-1921780253)
+
+If you get an error saying `No "python3" provider found. Run :checkhealth provider`, you need to install `pynvim` using
+
+```zsh
+pip3 install pynvim
+```
