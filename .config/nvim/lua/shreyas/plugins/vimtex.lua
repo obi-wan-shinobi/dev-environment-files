@@ -18,5 +18,6 @@ return {
       "specifier changed to",
       "Token not allowed in a PDF string",
     }
+    vim.g["vimtex_syntax_enabled"] = 1
   end,
 }
