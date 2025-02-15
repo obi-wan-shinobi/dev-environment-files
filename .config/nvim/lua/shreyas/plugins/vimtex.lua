@@ -2,6 +2,7 @@ return {
   "lervag/vimtex",
   lazy = false, -- we don't want to lazy load VimTeX
   -- tag = "v2.15", -- uncomment to pin to a specific release
+  event = "BufReadPre",
   init = function()
     vim.g["vimtex_view_method"] = "skim"
     -- vim.g["vimtex_view_method"] = "zathura_simple" -- for variant without xdotool to avoid errors in wayland
@@ -18,5 +19,6 @@ return {
       "specifier changed to",
       "Token not allowed in a PDF string",
     }
+    vim.g["vimtex_syntax_enabled"] = 1
   end,
 }

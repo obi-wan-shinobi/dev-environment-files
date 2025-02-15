@@ -16,6 +16,7 @@ return {
 
       highlight = {
         enable = true,
+        disable = { "latex" }, -- Disable Tree-sitter highlighting for LaTeX
       },
 
       incremental_selection = {
