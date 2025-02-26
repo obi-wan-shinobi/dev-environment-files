@@ -158,11 +158,33 @@ return {
       },
     })
 
-    lspconfig["rust_analyzer"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      filetypes = { "rust" },
-    })
+    -- (Shreyas): Using rustaceanvim instead of configuring here
+    -- lspconfig["rust_analyzer"].setup({
+    --   capabilities = capabilities,
+    --   on_attach = function(client, bufnr)
+    --     on_attach(client, bufnr)
+    --     vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+    --   end,
+    --   filetypes = { "rust" },
+    --   root_dir = util.root_pattern("Cargo.toml"),
+    --   settings = {
+    --     rust_analyzer = {
+    --       imports = {
+    --         granularity = { group = "module" },
+    --         prefix = "self",
+    --       },
+    --       cargo = {
+    --         allFeatures = true,
+    --         buildScripts = {
+    --           enable = true,
+    --         },
+    --       },
+    --       procMacro = {
+    --         enable = true,
+    --       },
+    --     },
+    --   },
+    -- })
 
     -- configure lua server (with special settings)
     lspconfig["lua_ls"].setup({
@@ -181,6 +203,7 @@ return {
               [vim.fn.stdpath("config") .. "/lua"] = true,
             },
           },
+          hint = { enable = true },
         },
       },
     })
