@@ -38,5 +38,7 @@ return {
       local sidebar = widgets.sidebar(widgets.scopes)
       sidebar.open()
     end, { desc = "Open sidebar for debugging" })
+    vim.keymap.set("n", "<Leader>dn", dap.step_over, { desc = "Debugger step over" })
+    vim.keymap.set("n", "<Leader>di", dap.step_into, { desc = "Debugger step into" })
   end,
 }
