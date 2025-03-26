@@ -70,8 +70,24 @@ Stow the `.config/nvim` to create symlinks to `~/.config/nvim` and run `nvim` fr
 
 If you are unable to load a preview using the markdown-preview plugin, refer this [thread](https://github.com/iamcco/markdown-preview.nvim/issues/148#issuecomment-1921780253)
 
-If you get an error saying `No "python3" provider found. Run :checkhealth provider`, you need to install `pynvim` using
+Because we are using `Ultisnips` you need to also install `pynvim` as a pip package. (Don't know why yet, just do it.)
+
+Rust LSP is not configured with mason and nvim-lspconfig but uses [rustaceanvim](https://github.com/mrcjkb/rustaceanvim?tab=readme-ov-file#pencil-prerequisites).
+This works with [rust analyzer](https://rust-analyzer.github.io/) installed as a separate binary which should be in your path and not as an lsp that is managed by mason.
+If you have installed `rust_analyzer` using mason, you first need to uninstall it and then install `rust_analyzer` separately using [rustup](https://rust-analyzer.github.io/book/rust_analyzer_binary.html#rustup)
 
 ```zsh
-pip3 install pynvim
+rustup component add rust-analyzer
 ```
+
+For DAP to work you need to install `llvm` (`lldb`).
+
+```zsh
+brew install llvm
+```
+
+Also make sure you add it to the path.
+
+Run `:checkhealth <plugin-name>` to see what else could be causing any other issues.
+
+Will update how to when I run into problems on Linux.
