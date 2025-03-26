@@ -25,7 +25,6 @@ return {
       -- list of servers for mason to install
       ensure_installed = {
         "clangd",
-        "ts_ls",
         "html",
         "cssls",
         "tailwindcss",
@@ -36,7 +35,6 @@ return {
         "prismals",
         "pyright",
         "gopls",
-        "rust_analyzer",
         "docker_compose_language_service",
         "dockerls",
       },
