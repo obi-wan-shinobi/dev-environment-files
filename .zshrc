@@ -113,6 +113,7 @@ source $ZSH/oh-my-zsh.sh
 
 alias pip=pip3
 alias python=python3
+alias cd=z
 
 # source $HOME/.aliases
 
