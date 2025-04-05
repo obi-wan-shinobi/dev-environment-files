@@ -7,7 +7,8 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 export PATH="$HOME/neovim/bin:/$HOME/bin:/usr/local/bin:/usr/local/go/bin:/$HOME/go/bin/:/Applications/Visual Studio Code.app/Contents/Resources/app/bin/:$/opt/homebrew/opt/openjdk/bin:$PATH"
-export PATH="/Applications/MiniZincIDE.app/Contents/Resources:/opt/homebrew/opt/llvm/bin:$PATH"
+export PATH="/Applications/MiniZincIDE.app/Contents/Resources:/opt/homebrew/opt/llvm/bin:/usr/local/texlive/2025/bin/universal-darwin:$PATH"
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -87,7 +88,8 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="/usr/local/man:/usr/local/texlive/2025/texmf-dist/doc/man:$MANPATH"
+export INFOPATH="/usr/local/texlive/2025/texmf-dist/doc/info:$INFOPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -118,6 +120,7 @@ bindkey '[C' forward-word
 bindkey '[D' backward-word
 alias pip=pip3
 alias python=python3
+alias cd=z
 
 source $HOME/.aliases
 
