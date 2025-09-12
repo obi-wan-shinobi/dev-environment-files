@@ -7,7 +7,7 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 export PATH="$HOME/neovim/bin:/$HOME/bin:/usr/local/bin:/usr/local/go/bin:/$HOME/go/bin/:/Applications/Visual Studio Code.app/Contents/Resources/app/bin/:$/opt/homebrew/opt/openjdk/bin:$PATH"
-export PATH="/Applications/MiniZincIDE.app/Contents/Resources:/opt/homebrew/opt/llvm/bin:/usr/local/texlive/2025/bin/universal-darwin:$PATH"
+export PATH="/Applications/MiniZincIDE.app/Contents/Resources:/opt/homebrew/opt/llvm/bin:/usr/local/texlive/2025/bin/universal-darwin:$PATH" 
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
