@@ -346,7 +346,7 @@ snippet >= "geq" iA
 endsnippet
 
 context "math()"
-snippet EE "geq" iA
+snippet EE "exists" iA
 \exists 
 endsnippet
 
@@ -427,6 +427,11 @@ snippet mcal "mathcal" iA
 \mathcal{$1}$0
 endsnippet
 
+context "math()"
+snippet mscr "mathscr" iA
+\mathscr{$1}$0
+endsnippet
+
 snippet lll "l" iA
 \ell
 endsnippet
@@ -459,6 +464,11 @@ endsnippet
 context "math()"
 snippet norm "norm" iA
 \|$1\|$0
+endsnippet
+
+context "math()"
+snippet bignrm "bignrm" iA
+\left\Vert$1\right\Vert$0
 endsnippet
 
 priority 100
@@ -703,7 +713,13 @@ endsnippet
 priority 10
 context "math()"
 snippet "phi" "phi" riA
-\phi
+\varphi
+endsnippet
+
+priority 10
+context "math()"
+snippet "lambda" "lambda" riA
+\lambda
 endsnippet
 
 priority 10

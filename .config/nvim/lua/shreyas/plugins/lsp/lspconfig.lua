@@ -12,22 +12,26 @@ return {
       lazy = false, -- This plugin is already lazy
     },
   },
+
   config = function()
     -- import lspconfig plugin
     local lspconfig = require("lspconfig")
-    local util = require("lspconfig/util")
+    -- local util = require("lspconfig/util")
+
     local coq_lsp = require("coq-lsp")
 
     -- import cmp-nvim-lsp plugin
+
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
     local keymap = vim.keymap -- for conciseness
-
     local opts = { noremap = true, silent = true }
+
     local on_attach = function(client, bufnr)
       opts.buffer = bufnr
 
       -- set keybinds
+
       opts.desc = "Show LSP references"
       keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
 
@@ -56,10 +60,14 @@ return {
       keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
 
       opts.desc = "Go to previous diagnostic"
-      keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
+      keymap.set("n", "[d", function()
+        vim.diagnostic.jump({ count = -1, float = true })
+      end, opts) -- jump to previous diagnostic in buffer
 
       opts.desc = "Go to next diagnostic"
-      keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
+      keymap.set("n", "]d", function()
+        vim.diagnostic.jump({ count = 1, float = true })
+      end, opts) -- jump to next diagnostic in buffer
 
       opts.desc = "Show documentation for what is under cursor"
       keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
@@ -74,12 +82,14 @@ return {
     -- Change the Diagnostic symbols in the sign column (gutter)
     -- (not in youtube nvim video)
     local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+
     for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
     -- Configure Coq LSP server using the coq_lsp imported module
+
     coq_lsp.setup({
       capabilities = capabilities,
       on_attach = on_attach,
@@ -99,67 +109,82 @@ return {
       },
     }
 
+    -- configure clangd server
+    lspconfig.clangd.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+
     -- configure html server
-    lspconfig["html"].setup({
+
+    lspconfig.html.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+
+    -- configure php server
+    lspconfig.phpactor.setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
     -- configure typescript server with plugin
-    lspconfig["ts_ls"].setup({
+    lspconfig.ts_ls.setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
     -- configure css server
-    lspconfig["cssls"].setup({
+    lspconfig.cssls.setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
     -- configure tailwindcss server
-    lspconfig["tailwindcss"].setup({
+    lspconfig.tailwindcss.setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
     -- configure graphql language server
-    lspconfig["graphql"].setup({
+    lspconfig.graphql.setup({
       capabilities = capabilities,
       on_attach = on_attach,
       filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
     })
 
     -- configure python server
-    lspconfig["pyright"].setup({
+    lspconfig.pyright.setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
     -- configure docker server
-    lspconfig["dockerls"].setup({
+    lspconfig.dockerls.setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
     -- configure docker-compose server
-    lspconfig["docker_compose_language_service"].setup({
+    lspconfig.docker_compose_language_service.setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
     -- configure latex server
-    lspconfig["ltex"].setup({
+    lspconfig.ltex.setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
     -- configure go server
-    lspconfig["gopls"].setup({
+    lspconfig.gopls.setup({
       capabilities = capabilities,
       on_attach = on_attach,
       filetypes = { "go", "gomod", "gowork", "gotmpl" },
-      root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+      root_dir = function(fname)
+        return vim.fs.root(fname, { "go.work", "go.mod", ".git" })
+      end,
       settings = {
         gopls = {
           completeUnimported = true,
@@ -172,7 +197,7 @@ return {
     })
 
     -- (Shreyas): Using rustaceanvim instead of configuring here
-    -- lspconfig["rust_analyzer"].setup({
+    --  lspconfig.rust_analyzer.setup({
     --   capabilities = capabilities,
     --   on_attach = function(client, bufnr)
     --     on_attach(client, bufnr)
@@ -200,7 +225,7 @@ return {
     -- })
 
     -- configure lua server (with special settings)
-    lspconfig["lua_ls"].setup({
+    lspconfig.lua_ls.setup({
       capabilities = capabilities,
       on_attach = on_attach,
       settings = { -- custom settings for lua

@@ -20,9 +20,11 @@ return {
         graphql = { "prettier" },
         lua = { "stylua" },
         python = { "isort", "black" },
-        go = { "goimports-revier", "gofmt", "golines" },
+        go = { "goimports-reviser", "gofmt", "golines" },
         bib = { "bibtex-tidy" },
         tex = { "latexindent" },
+        cpp = { "clang-format" },
+        php = { "php_cs_fixer" },
       },
       format_on_save = {
         lsp_fallback = true,
