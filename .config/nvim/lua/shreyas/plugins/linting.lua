@@ -28,7 +28,7 @@ return {
     end, { desc = "Trigger linting for current file" })
 
     -- Set pylint to work in virtualenv
-    lint.linters.pylint.cmd = "python"
+    lint.linters.pylint.cmd = "python3"
     lint.linters.pylint.args = {
       "-m",
       "pylint",

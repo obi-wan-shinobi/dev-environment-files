@@ -4,8 +4,8 @@ return {
   -- tag = "v2.15", -- uncomment to pin to a specific release
   event = "BufReadPre",
   init = function()
-    vim.g["vimtex_view_method"] = "skim"
-    -- vim.g["vimtex_view_method"] = "zathura_simple" -- for variant without xdotool to avoid errors in wayland
+    -- vim.g["vimtex_view_method"] = "skim"
+    vim.g["vimtex_view_method"] = "zathura_simple" -- for variant without xdotool to avoid errors in wayland
     vim.g["vimtex_quickfix_mode"] = 0 -- suppress error reporting on save and build
     -- vim.g["vimtex_mappings_enabled"] = 0 -- Ignore mappings
     vim.g["vimtex_indent_enabled"] = 0 -- Auto Indent
