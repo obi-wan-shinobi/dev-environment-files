@@ -38,8 +38,7 @@ return {
         "docker_compose_language_service",
         "dockerls",
       },
-      -- auto-install configured servers (with lspconfig)
-      automatic_installation = true, -- not the same as ensure_installed
+      automatic_enable = false,
     })
   end,
 }

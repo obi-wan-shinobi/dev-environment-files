@@ -14,10 +14,6 @@ return {
   },
 
   config = function()
-    -- import lspconfig plugin
-    local lspconfig = require("lspconfig")
-    -- local util = require("lspconfig/util")
-
     local coq_lsp = require("coq-lsp")
 
     -- import cmp-nvim-lsp plugin
@@ -109,82 +105,37 @@ return {
       },
     }
 
-    -- configure clangd server
-    lspconfig.clangd.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
+    local servers = {
+      "clangd",
+      "html",
+      "phpactor",
+      "ts_ls",
+      "cssls",
+      "tailwindcss",
+      "pyright",
+      "dockerls",
+      "docker_compose_language_service",
+      "ltex",
+    }
 
-    -- configure html server
+    for _, server in ipairs(servers) do
+      vim.lsp.config(server, {
+        capabilities = capabilities,
+        on_attach = on_attach,
+      })
+    end
 
-    lspconfig.html.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure php server
-    lspconfig.phpactor.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure typescript server with plugin
-    lspconfig.ts_ls.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure css server
-    lspconfig.cssls.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure tailwindcss server
-    lspconfig.tailwindcss.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure graphql language server
-    lspconfig.graphql.setup({
+    vim.lsp.config("graphql", {
       capabilities = capabilities,
       on_attach = on_attach,
       filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
     })
 
-    -- configure python server
-    lspconfig.pyright.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure docker server
-    lspconfig.dockerls.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure docker-compose server
-    lspconfig.docker_compose_language_service.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure latex server
-    lspconfig.ltex.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure go server
-    lspconfig.gopls.setup({
+    vim.lsp.config("gopls", {
       capabilities = capabilities,
       on_attach = on_attach,
       filetypes = { "go", "gomod", "gowork", "gotmpl" },
-      root_dir = function(fname)
-        return vim.fs.root(fname, { "go.work", "go.mod", ".git" })
-      end,
+      root_markers = { "go.work", "go.mod", ".git" },
       settings = {
         gopls = {
           completeUnimported = true,
@@ -197,7 +148,7 @@ return {
     })
 
     -- (Shreyas): Using rustaceanvim instead of configuring here
-    --  lspconfig.rust_analyzer.setup({
+    -- vim.lsp.config("rust_analyzer", {
     --   capabilities = capabilities,
     --   on_attach = function(client, bufnr)
     --     on_attach(client, bufnr)
@@ -224,8 +175,7 @@ return {
     --   },
     -- })
 
-    -- configure lua server (with special settings)
-    lspconfig.lua_ls.setup({
+    vim.lsp.config("lua_ls", {
       capabilities = capabilities,
       on_attach = on_attach,
       settings = { -- custom settings for lua
@@ -245,5 +195,8 @@ return {
         },
       },
     })
+
+    local enabled_servers = vim.list_extend(vim.deepcopy(servers), { "graphql", "gopls", "lua_ls" })
+    vim.lsp.enable(enabled_servers)
   end,
 }
